@@ -1,13 +1,14 @@
 # reading excel and putting data into variable called "all"
 # adjust path as needed to where the data is downloaded
 library(readxl)
-all = read_excel('C:\\Users\\marys\\Downloads\\Main_Data.xlsx')
+all = read_excel('C:\\Users\\marys\\OneDrive\\Documents\\Covid-Statistical-Modeling\\MathSeniorProject\\Data.xlsx')
 
 
 # reading columns of delta values of different stocks into a list
 deltaDowList = as.list(all$`Change Dow Jones`)
 deltaSPList = as.list(all$`Change S&P 500`)
 deltaNasdaqList = as.list(all$`Change NASDAQ`)
+
 
 # creating an empty list of the Dow Jones before and after covid 
 dowBeforeCovid <- c()
@@ -86,7 +87,6 @@ for (i in deltaNasdaqList){
 # converting the items in the list to a numeric value for hypothesis testing
 numericalNasdaqBeforeCovid <-as.numeric(unlist(nasdaqpBeforeCovid))
 numericalNasdaqAfterCovid <- as.numeric(unlist(nasdaqAfterCovid))
-
 
 
 # hypothesis testing (t-test) for change in the Dow
