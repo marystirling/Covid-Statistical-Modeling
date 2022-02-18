@@ -29,7 +29,12 @@ ggplot(rev_df, aes(rev_stock_name, rev_p_value)) +
         axis.text.y = element_text(color="black",
                                    size=14, angle=0),
         axis.title.x = element_blank(),
-        axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name)
+        axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) +
+        scale_fill_manual(values = c("Dow Jones" = "#353436",
+                               "S&P 500" = "#1b98e0",
+                               "NASDAQ" = "red",
+                               "AAPL" = "red",
+                               "MSFT" = "green"))
 
 
 coord_flip() + stock_name = as.list(all$`Index/Stock`)
