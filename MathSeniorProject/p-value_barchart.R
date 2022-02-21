@@ -23,19 +23,13 @@ rev_df <- data.frame(rev_stock_name, rev_p_value)
 #stock_name = factor(stock_name, levels = c("Dow Jones", "S&P 500", "NASDAQ", "MSFT", "CRM", "AAPL", "UNH", "AMGN", "JNJ", "GS", "V", "AXP", "BA", "CAT", "HON", "HD", "MCD", "DIS"), ordered = TRUE)
 
 ggplot(rev_df, aes(rev_stock_name, rev_p_value)) + 
-  geom_bar(stat = "identity", fill = "light blue") + coord_flip() + 
+  geom_bar(stat = "identity", fill = "royalblue4") + coord_flip() + 
   theme(axis.text.x = element_text(color="black",
                                    size=14, angle=0),
         axis.text.y = element_text(color="black",
                                    size=14, angle=0),
         axis.title.x = element_blank(),
-        axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) +
-        scale_fill_manual(values = c("Dow Jones" = "#353436",
-                               "S&P 500" = "#1b98e0",
-                               "NASDAQ" = "red",
-                               "AAPL" = "red",
-                               "MSFT" = "green"))
-
+        axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) 
 
 coord_flip() + stock_name = as.list(all$`Index/Stock`)
 
