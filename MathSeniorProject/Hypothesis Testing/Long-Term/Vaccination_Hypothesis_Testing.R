@@ -11,28 +11,29 @@ deltaNasdaqList = as.list(all$`Change NASDAQ`)
 
 
 # creating an empty list of the Dow Jones before and after covid 
-dowBeforeCovid <- c()
-dowAfterCovid <- c()
+dowBeforeVaccine <- c()
+dowAfterVaccine <- c()
 counter = 0
 
 # loop through the deltaDowList and add the values before and after covid, omitting invalid values of "NA"
 for (i in deltaDowList){
   if (i != "NA"){
-    if (counter < 640){
-      dowBeforeCovid <- append(dowBeforeCovid, i)
-    } else if (counter >= 640){
-      dowAfterCovid <- append(dowAfterCovid, i)
+    if (counter < 947){
+      dowBeforeVaccine <- append(dowBeforeVaccine, i)
+      
+    } else if (counter >= 947){
+      dowAfterVaccine <- append(dowAfterVaccine, i)
     }
   }
   counter = counter + 1
 }
-print(dowBeforeCovid)
-print(dowAfterCovid)
+
+print(dowBeforeVaccine)
+print(dowAfterVaccine)
 
 # converting the items in the list to a numeric value for hypothesis testing
-numericalDowBeforeCovid <-as.numeric(unlist(dowBeforeCovid))
-numericalDowAfterCovid <- as.numeric(unlist(dowAfterCovid))
-
+numericaldowBeforeVaccine <-as.numeric(unlist(dowBeforeVaccine))
+numericaldowAfterVaccine <- as.numeric(unlist(dowAfterVaccine))
 
 # creating an empty list of the S&P 500 before and after covid
 spBeforeCovid <- c()
@@ -43,11 +44,11 @@ counter = 0
 # loop through the deltaSPList and add the values before and after covid, omitting invalid values of "NA"
 for (i in deltaSPList){
   if (i != "NA"){
-    if (counter < 640){
+    if (counter < 947){
       # print(i)
       spBeforeCovid <- append(spBeforeCovid, i)
       # print(spBeforeCovid)
-    } else if (counter >= 640){
+    } else if (counter >= 947){
       # print(i)
       spAfterCovid <- append(spAfterCovid, i)
       # print(spAfterCovid)
@@ -71,11 +72,11 @@ counter = 0
 # loop through the deltaNasdaqlist and add the values before and after covid, omitting invalid values of "NA"
 for (i in deltaNasdaqList){
   if (i != "NA"){
-    if (counter < 640){
+    if (counter < 947){
       # print(i)
       nasdaqpBeforeCovid <- append(nasdaqpBeforeCovid, i)
       # print(nasdaqpBeforeCovid)
-    } else if (counter >= 640){
+    } else if (counter >= 947){
       # print(i)
       nasdaqAfterCovid <- append(nasdaqAfterCovid, i)
       # print(nasdaqAfterCovid)
@@ -85,13 +86,14 @@ for (i in deltaNasdaqList){
 }
 
 
+
 # converting the items in the list to a numeric value for hypothesis testing
 numericalNasdaqBeforeCovid <-as.numeric(unlist(nasdaqpBeforeCovid))
 numericalNasdaqAfterCovid <- as.numeric(unlist(nasdaqAfterCovid))
 
 
 # hypothesis testing (t-test) for change in the Dow
-t.test(numericalDowBeforeCovid, numericalDowAfterCovid)
+t.test(numericaldowBeforeVaccine, numericaldowAfterVaccine)
 
 # hypothesis testing (t-test) for change in the S&P 500
 t.test(numericalSPBeforeCovid, numericalSPAfterCovid)
