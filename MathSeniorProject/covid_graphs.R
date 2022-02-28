@@ -1,7 +1,9 @@
 # reading excel and putting data into variable called "all"
 # adjust path as needed to where the data is downloaded
+library(ggplot2)
 library(readxl)
 all = read_excel('C:\\Users\\marys\\OneDrive\\Documents\\Covid-Statistical-Modeling\\MathSeniorProject\\Data.xlsx')
+
 
 
 # reading columns of delta values of different stocks into a list
@@ -9,20 +11,54 @@ dow_list = as.list(all$`Dow Jones`)
 sp_list = as.list(all$`S&P 500`)
 nasdaq_list = as.list(all$NASDAQ)
 
+# reads dates in
+date = as.Date(all$Date)
+
+# reads covid increase in daily cases as list and makes them numeric
+covid_daily_list = as.list(all$`Covid-19 Daily Increase`)
+covid_daily = as.numeric(unlist(covid_daily_list))
+
+
+# reads vaccine percentage of U.S as list and makes them numeric
+vaccine_list = as.list(all$`% Fully Vaccinated (USA)`)
+vaccine = as.numeric(unlist(vaccine_list))
+
+
+# removes NA values in stock columns with previous price
 for (i in 1:length(dow_list)){
   if (dow_list[[i]] == "NA"){
     dow_list[[i]] <- dow_list[[i-1]]
     sp_list[[i]] <- sp_list[[i-1]]
     nasdaq_list[[i]] <- sp_list[[i-1]]
-    #print("NA reached")
   }
 }
 
-# converting the items in the list to a numeric value for hypothesis testing
+
+# converting the items in the list to a numeric value
 dow <-as.numeric(unlist(dow_list))
 sp <- as.numeric(unlist(sp_list))
 nasdaq <- as.numeric(unlist(nasdaq_list))
 
-#print(dow)
-#print(sp)
-#print(nasdaq)
+
+
+
+
+
+df <- data.frame(covid_daily, dow)
+
+coeff <- 12
+
+ggplot(df, aes(x=date)) +
+  
+  geom_line( aes(y=covid_daily/coeff), color = "blue") + 
+  geom_line( aes(y=dow), color = "red") + # Divide by 10 to get the same range than the temperature
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "Daily Cases of COVID-19",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
+  )
+
