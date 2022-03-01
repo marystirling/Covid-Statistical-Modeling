@@ -4,11 +4,11 @@ all = read_excel('C:\\Users\\marys\\OneDrive\\Documents\\Covid-Statistical-Model
 print(all)
 
 stock_name <- all$`Index/Stock`
-p_value <- all$`p-value`
+p_value <- all$`p-value (LT)`
 df <- data.frame(stock_name, p_value)
 #stock_name = factor(stock_name, levels = c("Dow Jones", "S&P 500", "NASDAQ", "MSFT", "CRM", "AAPL", "UNH", "AMGN", "JNJ", "GS", "V", "AXP", "BA", "CAT", "HON", "HD", "MCD", "DIS"), ordered = TRUE)
 
-ggplot(df, aes(stock_name, all$`p-value`)) + 
+ggplot(df, aes(stock_name, all$`p-value (LT)`)) + 
   geom_bar(stat = "identity", fill = "light blue") + coord_flip() + 
   theme(axis.text.x = element_text(color="black",
                                    size=14, angle=0),
@@ -17,8 +17,8 @@ ggplot(df, aes(stock_name, all$`p-value`)) +
         axis.title.x = element_blank(),
         axis.title.y = element_blank()) + scale_x_discrete(limits = stock_name) 
 
-rev_stock_name <- all$Rev_Name
-rev_p_value <- all$Rev_p_value
+rev_stock_name <- all$`Reverse name`
+rev_p_value <- all$`reverse p-value`
 rev_df <- data.frame(rev_stock_name, rev_p_value)
 #stock_name = factor(stock_name, levels = c("Dow Jones", "S&P 500", "NASDAQ", "MSFT", "CRM", "AAPL", "UNH", "AMGN", "JNJ", "GS", "V", "AXP", "BA", "CAT", "HON", "HD", "MCD", "DIS"), ordered = TRUE)
 
@@ -58,3 +58,4 @@ ggplot(data, aes(x = stock_name, y = p_value, main="Car Distribution")) +
                                    size=8, angle=0))
 
 ggplot(data, aes(x = stock_name, y = p_value)) + geom_point() + scale_y_continuous(limits = c(0, 1))
+

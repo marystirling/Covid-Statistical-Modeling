@@ -142,10 +142,10 @@ ggplot(df_sp_main, aes(x=limited_date)) +
   scale_y_continuous(
     
     # Features of the first axis
-    name = "S&P 500",
+    name = "Daily Cases of COVID-19",
     
     # Add a second axis and specify its features
-    sec.axis = sec_axis(~.*coeff, name="Daily Cases of COVID-19") 
+    sec.axis = sec_axis(~.*coeff, name="S&P 500") 
     
   )
 
@@ -158,10 +158,10 @@ ggplot(df_nasdaq_main, aes(x=limited_date)) +
   scale_y_continuous(
     
     # Features of the first axis
-    name = "NASDAQ",
+    name = "Daily Cases of COVID-19",
     
     # Add a second axis and specify its features
-    sec.axis = sec_axis(~.*coeff, name="Daily Cases of COVID-19") 
+    sec.axis = sec_axis(~.*coeff, name="NASDAQ") 
     
   )
 
