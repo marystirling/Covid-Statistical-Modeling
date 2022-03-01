@@ -29,7 +29,7 @@ for (i in 1:length(dow_list)){
   if (dow_list[[i]] == "NA"){
     dow_list[[i]] <- dow_list[[i-1]]
     sp_list[[i]] <- sp_list[[i-1]]
-    nasdaq_list[[i]] <- sp_list[[i-1]]
+    nasdaq_list[[i]] <- nasdaq_list[[i-1]]
   }
 }
 
@@ -43,6 +43,8 @@ limited_date <-c()
 
 df_dow <- c()
 df_covid_daily <- c()
+df_sp <- c()
+df_nasdaq <- c()
 
 counter = 0
 for (i in dow){
@@ -51,6 +53,24 @@ for (i in dow){
   }
   counter = counter + 1
 }
+
+counter = 0
+for (i in sp){
+  if (counter >= 581){
+    df_sp <- append(df_sp,i)
+  }
+  counter = counter + 1
+}
+
+counter = 0
+for (i in nasdaq){
+  if (counter >= 581){
+    df_nasdaq <- append(df_nasdaq,i)
+  }
+  counter = counter + 1
+}
+
+
 counter = 0
 for (i in covid_daily){
   if (counter >= 581){
@@ -71,11 +91,15 @@ for (i in 1:length(date)){
 print(limited_date)
 print(df_dow)
 print(df_covid_daily)
+print(df_sp)
+print(df_nasdaq)
 
 df_a <- data.frame(df_covid_daily, df_dow)
 
 
 df <- data.frame(covid_daily, dow)
+df_sp_main <- data.frame(df_covid_daily, df_sp)
+df_nasdaq_main <- data.frame(df_covid_daily, df_nasdaq)
 
 coeff <- 12
 
@@ -93,7 +117,7 @@ ggplot(df, aes(x=date)) +
     sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
   )
 
-coeff = 15
+coeff = 13
 ggplot(df_a, aes(x=limited_date)) +
   
   geom_line( aes(y=df_covid_daily/coeff), color = "blue") + 
@@ -106,6 +130,38 @@ ggplot(df_a, aes(x=limited_date)) +
     
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
+      
   )
-f
+
+coeff = 150
+ggplot(df_sp_main, aes(x=limited_date)) +
+  
+  geom_line( aes(y=df_covid_daily/coeff), color = "blue") + 
+  geom_line( aes(y=df_sp), color = "red") + # Divide by 10 to get the same range than the temperature
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "S&P 500",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~.*coeff, name="Daily Cases of COVID-19") 
+    
+  )
+
+coeff = 40
+ggplot(df_nasdaq_main, aes(x=limited_date)) +
+  
+  geom_line( aes(y=df_covid_daily/coeff), color = "blue") + 
+  geom_line( aes(y=df_nasdaq), color = "red") + # Divide by 10 to get the same range than the temperature
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "NASDAQ",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~.*coeff, name="Daily Cases of COVID-19") 
+    
+  )
 
