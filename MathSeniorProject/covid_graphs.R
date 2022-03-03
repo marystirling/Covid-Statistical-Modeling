@@ -161,7 +161,7 @@ ggplot(df_nasdaq_main, aes(x=limited_date)) +
     name = "Daily Cases of COVID-19",
     
     # Add a second axis and specify its features
-    sec.axis = sec_axis(~.*coeff, name="NASDAQ") 
+    sec.axis = sec_axis(~.*coeff, name="NASDAQ")
     
   )
 
