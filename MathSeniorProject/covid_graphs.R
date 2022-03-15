@@ -115,7 +115,12 @@ ggplot(df, aes(x=date)) +
     
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
-  )
+    
+  ) +
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + ggtitle("COVID-19 Daily Cases vs. Dow Jones Industrial Average")
 
 coeff = 13
 ggplot(df_a, aes(x=limited_date)) +
@@ -131,7 +136,11 @@ ggplot(df_a, aes(x=limited_date)) +
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
       
-  )
+  )+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("Date")
 
 coeff = 150
 ggplot(df_sp_main, aes(x=limited_date)) +
@@ -147,7 +156,11 @@ ggplot(df_sp_main, aes(x=limited_date)) +
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="S&P 500") 
     
-  )
+  )+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("Date")
 
 coeff = 40
 ggplot(df_nasdaq_main, aes(x=limited_date)) +
@@ -163,5 +176,9 @@ ggplot(df_nasdaq_main, aes(x=limited_date)) +
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="NASDAQ")
     
-  )
+  )+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("Date")
 
