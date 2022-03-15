@@ -140,7 +140,7 @@ ggplot(df_a, aes(x=limited_date)) +
   theme(
     axis.title.y = element_text(color = "blue", size=13),
     axis.title.y.right = element_text(color = "red", size=13)
-  ) + xlab("Date")
+  ) + xlab("")
 
 coeff = 150
 ggplot(df_sp_main, aes(x=limited_date)) +
@@ -160,7 +160,7 @@ ggplot(df_sp_main, aes(x=limited_date)) +
   theme(
     axis.title.y = element_text(color = "blue", size=13),
     axis.title.y.right = element_text(color = "red", size=13)
-  ) + xlab("Date")
+  ) + xlab("")
 
 coeff = 40
 ggplot(df_nasdaq_main, aes(x=limited_date)) +
@@ -180,5 +180,5 @@ ggplot(df_nasdaq_main, aes(x=limited_date)) +
   theme(
     axis.title.y = element_text(color = "blue", size=13),
     axis.title.y.right = element_text(color = "red", size=13)
-  ) + xlab("Date")
+  ) + xlab("")
 
