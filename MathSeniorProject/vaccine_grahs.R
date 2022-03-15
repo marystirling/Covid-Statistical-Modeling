@@ -115,7 +115,11 @@ ggplot(df, aes(x=date)) +
     
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
-  )
+  ) +
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("Date")
 
 coeff = 100000
 ggplot(df_a, aes(x=limited_date)) +
@@ -131,7 +135,11 @@ ggplot(df_a, aes(x=limited_date)) +
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
     
-  )
+  ) +
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("Date")
 
 coeff = 10000
 ggplot(df_sp_main, aes(x=limited_date)) +
@@ -147,7 +155,11 @@ ggplot(df_sp_main, aes(x=limited_date)) +
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="Percentage of U.S. Population Fully Vaccinated") 
     
-  )
+  )+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("Date")
 
 coeff = 50000
 ggplot(df_nasdaq_main, aes(x=limited_date)) +
@@ -163,5 +175,9 @@ ggplot(df_nasdaq_main, aes(x=limited_date)) +
     # Add a second axis and specify its features
     sec.axis = sec_axis(~.*coeff, name="NASDAQ") 
     
-  )
+  )+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("Date")
 
