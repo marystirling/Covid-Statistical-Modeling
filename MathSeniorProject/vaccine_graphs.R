@@ -101,6 +101,7 @@ df <- data.frame(vacc_daily, dow)
 df_sp_main <- data.frame(df_vacc_daily, df_sp)
 df_nasdaq_main <- data.frame(df_vacc_daily, df_nasdaq)
 
+# Dow Jones scaled graph
 a <- range(df_vacc_daily)
 print(a)
 print(a[2])
@@ -109,13 +110,50 @@ print(b)
 print(b[2])
 scale_factor <- diff(a)/diff(b)
 print(scale_factor)
-df_dow <- ((b[2] - b[1]) * scale_factor) + a[1]
+# df_dow <- ((b[2] - b[1]) * scale_factor) + a[1]
 
 for (i in 1:length(df_dow)){
   df_dow[i] <- ((df_dow[i] - b[1]) * scale_factor) + a[1]
 }
 trans <- ~ ((. - a[1]) / scale_factor) + b[1]
 print(df_dow)
+
+ggplot(df_a) +
+  geom_line(aes_string(limited_date, df_vacc_daily), col = "blue") + 
+  geom_line(aes_string(limited_date, df_dow), col='red') + 
+  scale_y_continuous(name = "Percentage of U.S. Population Fully Vaccinated", 
+                     sec.axis = sec_axis(trans=trans, name="Dow Jones Industrial Average"))+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("") 
+
+# S&P 500 scaled data graph 
+a <- range(df_vacc_daily)
+print(a)
+print(a[2])
+b <- range(df_sp)
+print(b)
+print(b[2])
+scale_factor <- diff(a)/diff(b)
+print(scale_factor)
+
+
+for (i in 1:length(df_dow)){
+  df_sp[i] <- ((df_sp[i] - b[1]) * scale_factor) + a[1]
+}
+trans <- ~ ((. - a[1]) / scale_factor) + b[1]
+print(df_sp)
+
+ggplot(df_sp_main) +
+  geom_line(aes_string(limited_date, df_vacc_daily), col = "blue") + 
+  geom_line(aes_string(limited_date, df_sp), col='red') + 
+  scale_y_continuous(name = "Percentage of U.S. Population Fully Vaccinated", 
+                     sec.axis = sec_axis(trans=trans, name="S&P 500"))+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("") 
 
 
 coeff <- 12
