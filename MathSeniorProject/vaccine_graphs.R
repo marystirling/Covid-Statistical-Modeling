@@ -101,12 +101,29 @@ df <- data.frame(vacc_daily, dow)
 df_sp_main <- data.frame(df_vacc_daily, df_sp)
 df_nasdaq_main <- data.frame(df_vacc_daily, df_nasdaq)
 
+a <- range(df_vacc_daily)
+print(a)
+print(a[2])
+b <- range(df_dow)
+print(b)
+print(b[2])
+scale_factor <- diff(a)/diff(b)
+print(scale_factor)
+df_dow <- ((b[2] - b[1]) * scale_factor) + a[1]
+
+for (i in 1:length(df_dow)){
+  df_dow[i] <- ((df_dow[i] - b[1]) * scale_factor) + a[1]
+}
+trans <- ~ ((. - a[1]) / scale_factor) + b[1]
+print(df_dow)
+
+
 coeff <- 12
 
 ggplot(df, aes(x=date)) +
   
-  geom_line( aes(y=vacc_daily/coeff), color = "blue") + 
-  geom_line( aes(y=dow), color = "red") + # Divide by 10 to get the same range than the temperature
+  geom_line( aes(y=vacc_daily), color = "blue") + 
+  geom_line( aes(y=dow/((b[2]-b[1]*scale_factor) +a[1])), color = "red") + # Divide by 10 to get the same range than the temperature
   
   scale_y_continuous(
     
@@ -114,12 +131,41 @@ ggplot(df, aes(x=date)) +
     name = "Daily Cases of COVID-19",
     
     # Add a second axis and specify its features
-    sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
+    sec.axis = sec_axis(~ ((. - a[1]) / scale_factor) + b[1], name="Dow Jones") 
   ) +
   theme(
     axis.title.y = element_text(color = "blue", size=13),
     axis.title.y.right = element_text(color = "red", size=13)
   ) + xlab("")
+
+ggplot(df_a, aes(x=limited_date)) +
+  
+  geom_line( aes(y=df_vacc_daily), color = "blue") + 
+  geom_line( aes(y=df_dow/((b[2]-b[1]*scale_factor) +a[1])), color = "red") + # Divide by 10 to get the same range than the temperature
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "Percentage of U.S. Population Fully Vaccinated",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~ ((. - a[1]) / scale_factor) + b[1], name="Dow Jones")
+    
+  ) +
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("") 
+
+ggplot(df_a) +
+  geom_line(aes_string(limited_date, df_vacc_daily), col = "blue") + 
+  geom_line(aes_string(limited_date, df_dow), col='red') + 
+  scale_y_continuous(name = "Percentage of U.S. Population Fully Vaccinated", 
+                     sec.axis = sec_axis(trans=trans, name="Dow Jones"))+
+  theme(
+    axis.title.y = element_text(color = "blue", size=13),
+    axis.title.y.right = element_text(color = "red", size=13)
+  ) + xlab("") 
 
 coeff = 100000
 ggplot(df_a, aes(x=limited_date)) +
@@ -133,13 +179,13 @@ ggplot(df_a, aes(x=limited_date)) +
     name = "Percentage of U.S. Population Fully Vaccinated",
     
     # Add a second axis and specify its features
-    sec.axis = sec_axis(~.*coeff, name="Dow Jones") 
+    sec.axis = sec_axis(~.*coeff, name="Dow Jones")
     
   ) +
   theme(
     axis.title.y = element_text(color = "blue", size=13),
     axis.title.y.right = element_text(color = "red", size=13)
-  ) + xlab("")
+  ) + xlab("") 
 
 coeff = 10000
 ggplot(df_sp_main, aes(x=limited_date)) +
