@@ -32,12 +32,20 @@ dow <-as.numeric(unlist(dow_list))
 sp <- as.numeric(unlist(sp_list))
 nasdaq <- as.numeric(unlist(nasdaq_list))
 
-print(dow_list)
-print(sp_list)
-print(nasdaq_list)
+print(dow)
+print(sp)
+print(nasdaq)
 print(covid_daily)
 print(vacc_daily)
 
 dow.lm<-lm(dow ~ covid_daily + vacc_daily)
 
 summary(dow.lm)
+
+sp.lm<-lm(sp ~ covid_daily + vacc_daily)
+
+summary(sp.lm)
+
+nasdaq.lm<-lm(nasdaq ~ covid_daily + vacc_daily)
+
+summary(nasdaq.lm)
