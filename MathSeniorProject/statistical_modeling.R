@@ -38,14 +38,14 @@ print(nasdaq)
 print(covid_daily)
 print(vacc_daily)
 
+# linear regression model for Dow Jones
 dow.lm<-lm(dow ~ covid_daily + vacc_daily)
-
 summary(dow.lm)
 
+# linear regression model for S&P 500
 sp.lm<-lm(sp ~ covid_daily + vacc_daily)
-
 summary(sp.lm)
 
+# linear regression model for Nasdaq
 nasdaq.lm<-lm(nasdaq ~ covid_daily + vacc_daily)
-
 summary(nasdaq.lm)
