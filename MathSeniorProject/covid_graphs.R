@@ -94,12 +94,17 @@ print(df_covid_daily)
 print(df_sp)
 print(df_nasdaq)
 
+cor(df_covid_daily, df_dow)
+cor(df_covid_daily, df_sp)
+cor(df_covid_daily, df_nasdaq)
+
 df_a <- data.frame(df_covid_daily, df_dow)
 
 
 df <- data.frame(covid_daily, dow)
 df_sp_main <- data.frame(df_covid_daily, df_sp)
 df_nasdaq_main <- data.frame(df_covid_daily, df_nasdaq)
+
 
 
 # Dow Jones scaled graph
