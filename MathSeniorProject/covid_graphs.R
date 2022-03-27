@@ -105,7 +105,8 @@ df <- data.frame(covid_daily, dow)
 df_sp_main <- data.frame(df_covid_daily, df_sp)
 df_nasdaq_main <- data.frame(df_covid_daily, df_nasdaq)
 
-
+df_dow.lm <- lm(df_dow ~ df_covid_daily + df_vacc_daily)
+summary(df_dow.lm)
 
 # Dow Jones scaled graph
 a <- range(df_covid_daily)
@@ -132,7 +133,7 @@ ggplot(df_a) +
   theme(
     axis.title.y = element_text(color = "blue", size=13),
     axis.title.y.right = element_text(color = "red", size=13)
-  ) + xlab("") 
+  ) + xlab("")
 
 # S&P 500 scaled data graph 
 a <- range(df_covid_daily)
