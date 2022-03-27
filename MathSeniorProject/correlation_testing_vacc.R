@@ -14,14 +14,11 @@ nasdaq_list = as.list(all$NASDAQ)
 # reads dates in
 date = as.Date(all$Date)
 
-# reads covid increase in daily cases as list and makes them numeric
+# reads vaccine increases in population as list and makes them numeric
 vacc_daily_list = as.list(all$`% Fully Vaccinated (USA)`)
 vacc_daily = as.numeric(unlist(vacc_daily_list))
 
 
-# reads vaccine percentage of U.S as list and makes them numeric
-vaccine_list = as.list(all$`% Fully Vaccinated (USA)`)
-vaccine = as.numeric(unlist(vaccine_list))
 
 
 # removes NA values in stock columns with previous price
