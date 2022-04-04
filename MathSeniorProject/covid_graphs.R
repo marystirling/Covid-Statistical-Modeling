@@ -155,7 +155,7 @@ print(df_sp)
 ggplot(df_sp_main) +
   geom_line(aes_string(limited_date, df_covid_daily), col = "blue") + 
   geom_line(aes_string(limited_date, df_sp), col='red') + 
-  scale_y_continuous(name = "Percentage of U.S. Population Fully Vaccinated", 
+  scale_y_continuous(name = "Daily Cases of COVID-19", 
                      sec.axis = sec_axis(trans=trans, name="S&P 500"))+
   theme(
     axis.title.y = element_text(color = "blue", size=13),
@@ -183,7 +183,7 @@ print(df_nasdaq)
 ggplot(df_nasdaq_main) +
   geom_line(aes_string(limited_date, df_covid_daily), col = "blue") + 
   geom_line(aes_string(limited_date, df_nasdaq), col='red') + 
-  scale_y_continuous(name = "Percentage of U.S. Population Fully Vaccinated", 
+  scale_y_continuous(name = "Daily Cases of COVID-19", 
                      sec.axis = sec_axis(trans=trans, name="NASDAQ Composite"))+
   theme(
     axis.title.y = element_text(color = "blue", size=13),
