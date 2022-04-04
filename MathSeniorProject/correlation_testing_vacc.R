@@ -93,4 +93,4 @@ print(df_nasdaq)
 
 cor(df_vacc_daily, df_dow)
 cor(df_vacc_daily, df_sp)
-cor(df_vacc_daily, df_nasdaq)
+cor.test(df_vacc_daily, df_nasdaq)
