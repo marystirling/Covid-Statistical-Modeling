@@ -5,7 +5,7 @@ all = read_excel('C:\\Users\\marys\\OneDrive\\Documents\\Covid-Statistical-Model
 
 
 # reading columns of delta values of different stocks into a list
-stock_list = as.list(all$JNJ)
+stock_list = as.list(all$DIS)
 
 # reads dates in
 date = as.Date(all$Date)
