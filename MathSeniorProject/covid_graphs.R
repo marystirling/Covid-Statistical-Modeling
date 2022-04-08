@@ -258,7 +258,7 @@ ggplot(df_nasdaq_main, aes(x=limited_date)) +
   
   geom_line( aes(y=df_covid_daily/coeff), color = "blue") + 
   geom_line( aes(y=df_nasdaq), color = "red") + # Divide by 10 to get the same range than the temperature
-  
+  geom_line(aes(y=df_sp), color = "green") +
   scale_y_continuous(
     
     # Features of the first axis
