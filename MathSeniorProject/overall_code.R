@@ -1,4 +1,4 @@
-setwd("/Users/msun1/OneDrive - Samford University/Samford University/SU Teaching/MA495 Senior Project/2022 Spring/Project_Mary Brown/Data")
+setwd("C:\\Users\\marys\\OneDrive\\Documents\\Covid-Statistical-Modeling\\MathSeniorProject")
 
 # importing the required library
 # library(glmnet)
@@ -10,7 +10,7 @@ library(xts)
 library(GGally)
 
 ########read multisheets in an exel#####
-path = "/Users/msun1/OneDrive - Samford University/Samford University/SU Teaching/MA495 Senior Project/2022 Spring/Project_Mary Brown/Data/Data_5_1.xlsx"
+path = "C:\\Users\\marys\\OneDrive\\Documents\\Covid-Statistical-Modeling\\MathSeniorProject\\Data.xlsx"
 
 # reading data from all sheets
 data_all = import_list(path)
@@ -63,26 +63,240 @@ don_industry_all=xts( x = data_graph[,-1], order.by=data_graph$Date)
 dygraph(don_industry_all)
 
 
+
 #####plot BOEN###########
 data_graph = subset(data.num, select = c(Date, BA, `Change BA`))
 don_BA_change=xts( x=data_graph[,-1], order.by=data_graph$Date)
 dygraph(don_BA_change)
 
+#####plot AAPL###########
+data_graph = subset(data.num, select = c(Date, AAPL, `Change AAPL`))
+don_AAPL_change=xts( x=data_graph[,-1], order.by=data_graph$Date)
+dygraph(don_AAPL_change)
+
 
 #############t-test########
 
-########boeing######
-before.data = data.num$BA[1:(marker.date-1)]
-after.data = data.num$BA[marker.date:end.data]
+########dow jones######
+before.data = data.num$`Dow Jones`[1:(marker.date-1)]
+after.data = data.num$`Dow Jones`[marker.date:end.date]
 
-t.test(before.data, after.data, alternative = "two.sided", var.equal = FALSE)
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change Dow Jones`[1:(marker.date-1)]
+after.data = data.num$`Change Dow Jones`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########SP 500######
+before.data = data.num$`S&P 500`[1:(marker.date-1)]
+after.data = data.num$`S&P 500`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change S&P 500`[1:(marker.date-1)]
+after.data = data.num$`Change S&P 500`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########NASDAQ######
+before.data = data.num$NASDAQ[1:(marker.date-1)]
+after.data = data.num$NASDAQ[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change NASDAQ`[1:(marker.date-1)]
+after.data = data.num$`Change NASDAQ`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########AAPL######
+before.data = data.num$AAPL[1:(marker.date-1)]
+after.data = data.num$AAPL[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change AAPL`[1:(marker.date-1)]
+after.data = data.num$`Change AAPL`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########MSFT######
+before.data = data.num$MSFT[1:(marker.date-1)]
+after.data = data.num$MSFT[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change MSFT`[1:(marker.date-1)]
+after.data = data.num$`Change MSFT`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########CRM######
+before.data = data.num$CRM[1:(marker.date-1)]
+after.data = data.num$CRM[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change CRM`[1:(marker.date-1)]
+after.data = data.num$`Change CRM`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########UNH######
+before.data = data.num$UNH[1:(marker.date-1)]
+after.data = data.num$UNH[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change UNH`[1:(marker.date-1)]
+after.data = data.num$`Change UNH`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########AMGN######
+before.data = data.num$AMGN[1:(marker.date-1)]
+after.data = data.num$AMGN[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change AMGN`[1:(marker.date-1)]
+after.data = data.num$`Change AMGN`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########JNJ######
+before.data = data.num$JNJ[1:(marker.date-1)]
+after.data = data.num$JNJ[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change JNJ`[1:(marker.date-1)]
+after.data = data.num$`Change JNJ`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+
+########GS######
+before.data = data.num$GS[1:(marker.date-1)]
+after.data = data.num$GS[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change GS`[1:(marker.date-1)]
+after.data = data.num$`Change GS`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########V######
+before.data = data.num$V[1:(marker.date-1)]
+after.data = data.num$V[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change V`[1:(marker.date-1)]
+after.data = data.num$`Change V`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########AXP######
+before.data = data.num$AXP[1:(marker.date-1)]
+after.data = data.num$AXP[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change AXP`[1:(marker.date-1)]
+after.data = data.num$`Change AXP`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########BA######
+before.data = data.num$BA[1:(marker.date-1)]
+after.data = data.num$BA[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
 
 before.data = data.num$`Change BA`[1:(marker.date-1)]
-after.data = data.num$`Change BA`[marker.date:end.data]
+after.data = data.num$`Change BA`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+
+########CAT######
+before.data = data.num$CAT[1:(marker.date-1)]
+after.data = data.num$CAT[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change CAT`[1:(marker.date-1)]
+after.data = data.num$`Change CAT`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########HON######
+before.data = data.num$HON[1:(marker.date-1)]
+after.data = data.num$HON[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change HON`[1:(marker.date-1)]
+after.data = data.num$`Change HON`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########HD######
+before.data = data.num$HD[1:(marker.date-1)]
+after.data = data.num$HD[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change HD`[1:(marker.date-1)]
+after.data = data.num$`Change HD`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########MCD######
+before.data = data.num$MCD[1:(marker.date-1)]
+after.data = data.num$MCD[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change MCD`[1:(marker.date-1)]
+after.data = data.num$`Change MCD`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########DIS######
+before.data = data.num$DIS[1:(marker.date-1)]
+after.data = data.num$DIS[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+before.data = data.num$`Change DIS`[1:(marker.date-1)]
+after.data = data.num$`Change DIS`[marker.date:end.date]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########Vaccination Hypothesis Testing######
+
+########dow jones######
+before.data = data.num$`Change Dow Jones`[1:(marker.date.vac-1)]
+after.data = data.num$`Change Dow Jones`[marker.date.vac:end.date]
 
 t.test(before.data, after.data, alternative = "less", var.equal = FALSE)
 
 
+########sp 500#####
+before.data = data.num$`Change S&P 500`[1:(marker.date.vac-1)]
+after.data = data.num$`Change S&P 500`[marker.date.vac:end.date]
+
+t.test(before.data, after.data, alternative = "less", var.equal = FALSE)
+
+########dow jones######
+before.data = data.num$`Change NASDAQ`[1:(marker.date.vac-1)]
+after.data = data.num$`Change NASDAQ`[marker.date.vac:end.date]
+
+t.test(before.data, after.data, alternative = "less", var.equal = FALSE)
 
 ##########modeling#######
 
@@ -163,7 +377,7 @@ ggpairs(data.all3.model)
 
 my_fn <- function(data, mapping, ...){
   p <- ggplot(data = data.all3.model, mapping = mapping) + 
-    geom_point() + 
+    geom_point(size = 0.3) + 
     geom_smooth(method=loess, fill="red", color="red", ...) +
     geom_smooth(method=lm, fill="blue", color="blue", ...)
   p
