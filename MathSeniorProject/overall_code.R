@@ -34,6 +34,8 @@ str(data.num)
 marker.date = 439 ###2020-3-2
 marker.date.vac = 652 ###2021-1-4
 end.date = 903
+date.st.start = 614 ###2020-2-3
+date.st.end = 671 ### 1010-3-27
 
 ########plot################
 
@@ -77,6 +79,119 @@ dygraph(don_AAPL_change)
 
 #############t-test########
 
+############short-term t-test########
+########dow jones######
+before.data = data.num$`Dow Jones`[1:(date.st.start-1)]
+after.data = data.num$`Dow Jones`[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+
+########sp 500######
+before.data = data.num$`S&P 500`[1:(date.st.start-1)]
+after.data = data.num$`S&P 500`[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########nasdaq######
+before.data = data.num$NASDAQ[1:(date.st.start-1)]
+after.data = data.num$NASDAQ[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########MSFT######
+before.data = data.num$MSFT[1:(date.st.start-1)]
+after.data = data.num$MSFT[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########CRM######
+before.data = data.num$CRM[1:(date.st.start-1)]
+after.data = data.num$CRM[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########AAPL######
+before.data = data.num$AAPL[1:(date.st.start-1)]
+after.data = data.num$AAPL[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########UNH######
+before.data = data.num$UNH[1:(date.st.start-1)]
+after.data = data.num$UNH[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########AMGN######
+before.data = data.num$AMGN[1:(date.st.start-1)]
+after.data = data.num$AMGN[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+
+########JNJ######
+before.data = data.num$JNJ[1:(date.st.start-1)]
+after.data = data.num$JNJ[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########GS######
+before.data = data.num$GS[1:(date.st.start-1)]
+after.data = data.num$GS[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########V######
+before.data = data.num$`Change V`[1:(date.st.start-1)]
+after.data = data.num$`Change V`[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########AXP######
+before.data = data.num$AXP[1:(date.st.start-1)]
+after.data = data.num$AXP[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########BA######
+before.data = data.num$BA[1:(date.st.start-1)]
+after.data = data.num$BA[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+
+########CAT######
+before.data = data.num$CAT[1:(date.st.start-1)]
+after.data = data.num$CAT[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########HON######
+before.data = data.num$HON[1:(date.st.start-1)]
+after.data = data.num$HON[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########HD######
+before.data = data.num$HD[1:(date.st.start-1)]
+after.data = data.num$HD[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########MCD######
+before.data = data.num$MCD[1:(date.st.start-1)]
+after.data = data.num$MCD[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########DIS######
+before.data = data.num$DIS[1:(date.st.start-1)]
+after.data = data.num$DIS[date.st.start:date.st.end]
+
+t.test(before.data, after.data, alternative = "greater", var.equal = FALSE)
+
+########normal t-test###########
 ########dow jones######
 before.data = data.num$`Dow Jones`[1:(marker.date-1)]
 after.data = data.num$`Dow Jones`[marker.date:end.date]
@@ -297,6 +412,26 @@ before.data = data.num$`Change NASDAQ`[1:(marker.date.vac-1)]
 after.data = data.num$`Change NASDAQ`[marker.date.vac:end.date]
 
 t.test(before.data, after.data, alternative = "less", var.equal = FALSE)
+
+
+####################################################################
+######all t-test p-value####
+nt = 30
+index.start = 4
+index.end = 38
+p_all = rep(0,18)
+
+for (i in seq(index.start, index.end, 2) ){
+  t_bf = data.num[(marker.date-nt+1):marker.date, i]
+  t_af = data.num[(marker.date+1):(marker.date+nt), i]
+  t_test = t.test(t_bf, t_af, alternative = "greater", var.equal = FALSE)
+  p = t_test$p.value
+  p_all[i/2 - 1] = p
+  print(paste("The p-value of t-test for", names(data.num)[i], "in",  nt,"days before and after COVID break out is", p))
+}
+
+p_all
+plot(p_all)
 
 ##########modeling#######
 
