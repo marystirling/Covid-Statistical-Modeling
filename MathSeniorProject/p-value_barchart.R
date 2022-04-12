@@ -46,6 +46,36 @@ ggplot(rev_df, aes(rev_stock_name, rev_p_value)) +
                                    size=14, angle=0),
         axis.title.x = element_blank(),
         axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) 
+
+
+rev_p_value <- all$reverse3_st
+print(rev_p_value)
+rev_df <- data.frame(rev_stock_name, rev_p_value)
+#stock_name = factor(stock_name, levels = c("Dow Jones", "S&P 500", "NASDAQ", "MSFT", "CRM", "AAPL", "UNH", "AMGN", "JNJ", "GS", "V", "AXP", "BA", "CAT", "HON", "HD", "MCD", "DIS"), ordered = TRUE)
+
+ggplot(rev_df, aes(rev_stock_name, rev_p_value)) + 
+  geom_bar(stat = "identity", fill = "royalblue4") + coord_flip() + 
+  theme(axis.text.x = element_text(color="black",
+                                   size=14, angle=0),
+        axis.text.y = element_text(color="black",
+                                   size=14, angle=0),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) +
+  scale_y_continuous(limits = c(1.03E-24
+,3.61377125929618E-09))
+
+ggplot(rev_df, aes(rev_stock_name, rev_p_value)) + 
+  geom_point(size = 7, color = "royalblue4") + coord_flip() + 
+  theme(axis.text.x = element_text(color="black",
+                                   size=14, angle=0),
+        axis.text.y = element_text(color="black",
+                                   size=14, angle=0),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) +
+  scale_y_continuous(limits = c(1.03E-24
+                                ,3.61377125929618E-09))
+
+
 coord_flip() + stock_name = as.list(all$`Index/Stock`)
 
 p_value = as.numeric(all$`p-value`)
