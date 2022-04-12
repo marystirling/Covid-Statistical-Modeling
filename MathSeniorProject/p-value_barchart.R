@@ -47,6 +47,15 @@ ggplot(rev_df, aes(rev_stock_name, rev_p_value)) +
         axis.title.x = element_blank(),
         axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) 
 
+ggplot(rev_df, aes(rev_stock_name, rev_p_value)) + 
+  geom_point(size = 7, color = "royalblue4") + coord_flip() + 
+  theme(axis.text.x = element_text(color="black",
+                                   size=14, angle=0),
+        axis.text.y = element_text(color="black",
+                                   size=14, angle=0),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank()) + scale_x_discrete(limits = rev_stock_name) 
+
 
 rev_p_value <- all$reverse3_st
 print(rev_p_value)
