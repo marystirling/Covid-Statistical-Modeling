@@ -60,6 +60,7 @@ ggplot(rev_df, aes(rev_stock_name, rev_p_value)) +
 rev_p_value <- all$reverse3_st
 print(rev_p_value)
 rev_df <- data.frame(rev_stock_name, rev_p_value)
+
 #stock_name = factor(stock_name, levels = c("Dow Jones", "S&P 500", "NASDAQ", "MSFT", "CRM", "AAPL", "UNH", "AMGN", "JNJ", "GS", "V", "AXP", "BA", "CAT", "HON", "HD", "MCD", "DIS"), ordered = TRUE)
 
 ggplot(rev_df, aes(rev_stock_name, rev_p_value)) + 
